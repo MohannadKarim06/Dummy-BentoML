@@ -1,0 +1,36 @@
+service: "service:svc"
+
+labels:
+  owner: "me"
+  project: "dummy multi model backend"
+
+include:
+  - "service.py"
+  - "requirements.txt"
+
+exclude:
+  - "*.pyc"
+  - "__pycache__/"
+  - ".git/"
+
+python:
+  packages:
+    - scikit-learn
+    - pandas
+    - numpy
+    - transformers
+    - torch 
+    - spacy
+    - requests 
+    - "en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0.tar.gz" 
+
+docker:
+  distro: "debian" 
+  python_version: "3.9" 
+  system_packages:
+    - git 
+    
+models:
+  - text_classifier_sklearn:latest
+  - sentiment_analyzer_hf:latest
+    
